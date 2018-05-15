@@ -2,7 +2,7 @@ const assert = require('assert');
 
 const parse = require('../parse');
 const dynamofy = require('../dynamofy');
-describe('test to parse', () => {
+describe('test to dynamofy', () => {
     it('should parse a string', () => {
         const parsed = parse({ S: 'string' });
         const dynamofied = dynamofy(parsed);
@@ -74,11 +74,11 @@ describe('test to parse', () => {
         const parsed = parse({
             string:{ S:4 },
             number:{ N:'4' },
-            array:{ L:[ 1, 2, 3, 4 ] },
+            array:{ L:[ {N: 1}, {N: 2}, {N: 3}, {N: 4} ] },
             map:{ M:{
                 string:{ S:4 },
                 number:{ N:'4' },
-                array:{ L:[ 1, 2, 3, 4 ] },
+                array:{ L:[ {N: 1}, {N: 2}, {N: 3}, {N: 4} ] },
                 map:{ M:{
                     string: {
                         S: 2343

@@ -47,11 +47,11 @@ describe('test to parse', () => {
         const parsed = parse({
             string:{ S:4 },
             number:{ N:'4' },
-            array:{ L:[ 1, 2, 3, 4 ] },
+            array:{ L:[ {N: 1}, {N: 2}, {N: 3}, {N: 4} ] },
             map:{ M:{
                 string:{ S:4 },
                 number:{ N:'4' },
-                array:{ L:[ 1, 2, 3, 4 ] },
+                array:{ L:[ {N: 1}, {N: 2}, {N: 3}, {N: 4} ] },
                 map:{ M:{
                     string: {
                         S: 2343
@@ -93,6 +93,13 @@ describe('test to parse', () => {
             NS: [ '1', '2', '3', '4.5' ]
         });
         assert.deepEqual(parsed, [ 1, 2, 3, 4.5 ]);
+    });
+
+    it('should list of strings', () => {
+        const parsed = parse({
+            L: [ { S: 'a-string' } ]
+        });
+        assert.deepEqual(parsed, [ 'a-string' ]);
     });
 
     it('should parse a map with a number set', () => {
